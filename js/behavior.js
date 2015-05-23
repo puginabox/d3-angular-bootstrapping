@@ -1,20 +1,11 @@
-$(document.ready(function(){
+$(document).ready(function(){
     
+    self = $(this);
     
-    
-    
-    
-    
-    
-    
+
     
     
     
     
     
 });
-
-
-
-
-
