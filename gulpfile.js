@@ -8,7 +8,6 @@ var plug = require('gulp-load-plugins')({
 });
 
 //------------------------------------- SERVER
-
 gulp.task('webserver', function() {
     gulp.src('src')
         .pipe(plug.webserver({
@@ -33,8 +32,7 @@ gulp.task('vet', function() {
         .pipe(plug.jshint.reporter('fail'));
 });
 
-////////////
-
+//------------------------------------- Logs
 function log(msg) {
     if (typeof(msg) === 'object') {
         for (var item in msg) {
