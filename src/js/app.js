@@ -8,16 +8,21 @@
 var bgdColor = '#268BD2',
     txtColor = '#EEE8D5';
 
-
-var w = 400,
-    h = 100,
+//---- SVG setup
+var w = 400, // width of svg container
+    h = 500, // height of svg container
     padding = 2,
-    dataset = [5, 13, 220, 119, 77, 27, 33],
+    dataset = [35, 13, 220, 119, 377, 27, 33],
     svg1 = d3.select('#deThree')
     .append('svg')
     .attr('width', w)
-    .attr('height', h);
+    .attr('height', h)
+    .style({
+        'background': bgdColor,
+        'padding': '20px'
+    });
 
+//---- bars setup
 svg1.selectAll('rect')
     .data(dataset).enter()
     .append('rect')
