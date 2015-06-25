@@ -32,6 +32,31 @@ gulp.task('vet', function() {
         .pipe(plug.jshint.reporter('fail'));
 });
 
+//------------------------------------- Inject library files into index.html
+// gulp.task('inject', function() {
+//     var target = gulp.src('./src/index.html');
+//     // It's not necessary to read the files (will speed up things), we're only after their paths: 
+//     var sources = gulp.src(['./src/js/lib/**/*.min.js', './src/css/*.css'], {
+//         read: false
+//     });
+
+//     return target.pipe(plug.inject(sources))
+//         .pipe(gulp.dest('./src'));
+// });
+
+
+gulp.task('inject', function() {
+    var target = gulp.src(config.index);
+
+    return target
+        .pipe(plug.inject(gulp.src('./src/js/lib/**/*.min.js', {
+            read: false
+        }), {
+            relative: true
+        }))
+        .pipe(gulp.dest('src'));;
+});
+
 //------------------------------------- Logs
 function log(msg) {
     if (typeof(msg) === 'object') {

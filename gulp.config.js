@@ -5,7 +5,8 @@ module.exports = function() {
         alljs: [
             './src/**/*.js',
             './*.js'
-        ]
+        ],
+        index: './src/index.html'
     };
 
     return config;
