@@ -1,3 +1,11 @@
+/**
+ *
+ * Gulpfile setup
+ * 
+ * Griffin Byron, 2015
+ **/
+
+
 var gulp = require('gulp');
 var args = require('yargs').argv;
 
