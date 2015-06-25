@@ -1,12 +1,21 @@
-.highlight  {
-  color: #C64C6F;
-  font-weight: 600;
+* {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.highlight {
+    color: #C64C6F;
+    font-weight: 600;
 }
 
 .item {
-  padding-left: 30px;
+    padding-left: 30px;
 }
 
 .bigger {
-  font-size: 150%;
+    font-size: 150%;
+}
+
+.container {
+    margin: 20px auto;
 }
