@@ -8,12 +8,13 @@ var plug = require('gulp-load-plugins')({
 });
 
 //------------------------------------- SERVER
-gulp.task('webserver', function() {
-    gulp.src('src')
+gulp.task('server', function() {
+    gulp.src('src/')
         .pipe(plug.webserver({
             livereload: true,
-            directoryListing: true,
-            open: true
+            directoryListing: false, // don't show folder hierachy
+            open: true,
+            fallback: 'index.html'
         }));
 });
 
