@@ -1,0 +1,30 @@
+{
+  "name": "D3Scaffolding",
+  "version": "0.0.1",
+  "description": "d3 Angular Gulp Project Setup",
+  "private": "true",
+  "author": "Griffin Byron",
+  "license": "MIT",
+  "homepage": "https://github.com/puginabox",
+  "repository": {
+    "type": "git",
+    "url": "https://git@github.com:puginabox/d3-scaffolding.git"
+  },
+  "scripts": {
+    "init": "npm install",
+    "install": "bower install",
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-if": "^1.2.5",
+    "gulp-inject": "^1.3.1",
+    "gulp-jscs": "^1.6.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-print": "^1.1.0",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "jscs": "^1.13.1",
+    "yargs": "^3.13.0"
+  }
+}
