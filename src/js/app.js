@@ -17,9 +17,9 @@
 
     angular.module('myApp', [
         'myChart'
-
-
-
+        // other dependencies
+        //
+        //
 
     ]);
 

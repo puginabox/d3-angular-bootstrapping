@@ -4,115 +4,116 @@
  *
  **/
 
+(function() { //----- Protect the Queen, protect the Queen!
+    console.log('4 - Chart Directive is ready and raring...');
+    'use strict';
 
-console.log('4 - Chart Directive is ready and raring...');
-// 'use strict';
+    angular
+        .module('myApp')
+        .directive('myScatterChart', ["d3", "myChart",
+            function(d3) {
 
+                function draw(svg, width, height, data) {
 
-angular
-    .module('myApp')
-    .directive('myScatterChart', ["d3",
-        function(d3) {
+                    svg
+                        .attr('width', width)
+                        .attr('height', height);
 
-            function draw(svg, width, height, data) {
+                    // Define a margin
+                    var margin = 30;
 
-                svg
-                    .attr('width', width)
-                    .attr('height', height);
+                    // Define x scale
+                    var xScale = d3.time.scale()
+                        .domain(d3.extent(data, function(d) {
+                            return d.x;
+                        }))
+                        .range([margin, width - margin]);
 
-                // Define a margin
-                var margin = 30;
+                    // Define x-axis
+                    var xAxis = d3.svg.axis()
+                        .scale(xScale)
+                        .orient('top')
+                        .tickFormat(d3.time.format('%S'));
 
-                // Define x scale
-                var xScale = d3.time.scale()
-                    .domain(d3.extent(data, function(d) {
-                        return d.x;
-                    }))
-                    .range([margin, width - margin]);
+                    // Define y-scale
+                    var yScale = d3.time.scale()
+                        .domain([0, d3.max(data, function(d) {
+                            return d.y;
+                        })])
+                        .range([margin, height - margin]);
 
-                // Define x-axis
-                var xAxis = d3.svg.axis()
-                    .scale(xScale)
-                    .orient('top')
-                    .tickFormat(d3.time.format('%S'));
+                    // Define y-axis
+                    var yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient('left')
+                        .tickFormat(d3.format('f'));
 
-                // Define y-scale
-                var yScale = d3.time.scale()
-                    .domain([0, d3.max(data, function(d) {
-                        return d.y;
-                    })])
-                    .range([margin, height - margin]);
+                    // Draw the x-axis
+                    svg.select('.x-axis')
+                        .attr("transform", "translate(0, " + margin + ")")
+                        .call(xAxis);
 
-                // Define y-axis
-                var yAxis = d3.svg.axis()
-                    .scale(yScale)
-                    .orient('left')
-                    .tickFormat(d3.format('f'));
+                    // Draw the y-axis
+                    svg.select('.y-axis')
+                        .attr("transform", "translate(" + margin + ")")
+                        .call(yAxis);
 
-                // Draw the x-axis
-                svg.select('.x-axis')
-                    .attr("transform", "translate(0, " + margin + ")")
-                    .call(xAxis);
+                    // Add new the data points
+                    svg.select('.data')
+                        .selectAll('circle').data(data)
+                        .enter()
+                        .append('circle');
 
-                // Draw the y-axis
-                svg.select('.y-axis')
-                    .attr("transform", "translate(" + margin + ")")
-                    .call(yAxis);
-
-                // Add new the data points
-                svg.select('.data')
-                    .selectAll('circle').data(data)
-                    .enter()
-                    .append('circle');
-
-                // Updated all data points
-                svg.select('.data')
-                    .selectAll('circle').data(data)
-                    .attr('r', 2.5)
-                    .attr('cx', function(d) {
-                        return xScale(d.x);
-                    })
-                    .attr('cy', function(d) {
-                        return yScale(d.y);
-                    });
-            }
-
-            return {
-                restrict: 'E',
-                scope: {
-                    data: '='
-                },
-                compile: function(element, attrs, transclude) {
-
-                    // Create a SVG root element
-                    var svg = d3.select(element[0]).append('svg');
-
-                    svg.append('g').attr('class', 'data');
-                    svg.append('g').attr('class', 'x-axis axis');
-                    svg.append('g').attr('class', 'y-axis axis');
-
-                    // Define the dimensions for the chart
-                    var width = 600,
-                        height = 300;
-
-                    // Return the link function
-                    return function(scope, element, attrs) {
-
-                        // Watch the data attribute of the scope
-                        scope.$watch('data', function(newVal, oldVal, scope) {
-
-                            var data = scope.data.map(function(d) {
-                                return {
-                                    x: d.time,
-                                    y: d.visitors
-                                }
-                            });
-
-                            // Update the chart
-                            draw(svg, width, height, data);
-                        }, true);
-                    };
+                    // Updated all data points
+                    svg.select('.data')
+                        .selectAll('circle').data(data)
+                        .attr('r', 2.5)
+                        .attr('cx', function(d) {
+                            return xScale(d.x);
+                        })
+                        .attr('cy', function(d) {
+                            return yScale(d.y);
+                        });
                 }
-            };
-        }
-    ]);
+
+                return {
+                    restrict: 'E',
+                    scope: {
+                        data: '='
+                    },
+                    compile: function(element, attrs, transclude) {
+
+                        // Create a SVG root element
+                        var svg = d3.select(element[0]).append('svg');
+
+                        svg.append('g').attr('class', 'data');
+                        svg.append('g').attr('class', 'x-axis axis');
+                        svg.append('g').attr('class', 'y-axis axis');
+
+                        // Define the dimensions for the chart
+                        var width = 600,
+                            height = 300;
+
+                        // Return the link function
+                        return function(scope, element, attrs) {
+
+                            // Watch the data attribute of the scope
+                            scope.$watch('data', function(newVal, oldVal, scope) {
+
+                                var data = scope.data.map(function(d) {
+                                    return {
+                                        x: d.time,
+                                        y: d.visitors
+                                    }
+                                });
+
+                                // Update the chart
+                                draw(svg, width, height, data);
+                            }, true);
+                        };
+                    }
+                };
+            }
+        ]);
+
+})(); // end of SIAF (Self Invoking Anonymous Function), of IIFE for the purists... ;-)
