@@ -13,7 +13,7 @@ var w = 400, // width of svg container
     h = 500, // height of svg container
     padding = 2,
     dataset = [35, 413, 100, 82, 220, 119, 377, 27, 33],
-    svg1 = d3.select('#deThree').append('svg')
+    svg = d3.select('#deThree').append('svg')
     .attr('width', w)
     .attr('height', h)
     .style({
@@ -31,7 +31,7 @@ function colorPick(value) {
         }
     }
     //---- bars setup
-svg1.selectAll('rect')
+svg.selectAll('rect')
     .data(dataset).enter()
     .append('rect')
     .attr('fill', function(d) {
@@ -49,7 +49,7 @@ svg1.selectAll('rect')
     });
 
 //---------- bar labels
-svg1.selectAll('text')
+svg.selectAll('text')
     .data(dataset).enter()
     .append('text')
     .text(function(d) {
@@ -65,4 +65,39 @@ svg1.selectAll('text')
         'y': function(d, i) {
             return h - (d + 14);
         }
+    });
+
+//-------------Line Chart
+
+var lineChart = d3.svg.line()
+    .x(function(d, i) {
+        return (i * (w / dataset.length));
+    })
+    .y(function(d) {
+        return h - d; //upside down hack
+    })
+
+
+// .x(function(d) {
+//     return d.month * 2;
+// })
+// .y(function(d) {
+//     return d.sales;
+// })
+.interpolate('linear');
+
+
+var svg2 = d3.select('#deThreeTwo').append('svg')
+    .attr({
+        width: w,
+        height: h
+    });
+
+//viz = visualization
+var viz = svg2.append('path')
+    .attr({
+        d: lineChart(dataset),
+        'stroke': 'purple',
+        'stroke-width': '4',
+        'fill': 'none'
     });

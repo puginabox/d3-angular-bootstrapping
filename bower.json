@@ -1,28 +1,29 @@
 {
-  "name": "ProjectScaffolding",
-  "version": "0.0.1",
-  "description": "Project Schaffolding, including D3 & Angular",
-  "authors": [
-    "Griffin Byron"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/puginabox/javascript-setup",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "js/lib",
-    "vendor",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.2.24",
-    "angular-route": "~1.2.24",
-    "angular-animate": "~1.2.24",
-    "angular-sanitize": "~1.2.24",
-    "bootstrap": "~3.3.5"
-  },
-  "devDependencies": {
-    "d3": "~3.5.5"
-  }
+    "name": "ProjectScaffolding",
+    "version": "0.0.1",
+    "description": "Project Schaffolding, including D3 & Angular",
+    "authors": [
+        "Griffin Byron"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/puginabox/javascript-setup",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "js/lib",
+        "vendor",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.2.24",
+        "angular-route": "~1.2.24",
+        "angular-animate": "~1.2.24",
+        "angular-sanitize": "~1.2.24",
+        "bootstrap": "~3.3.5",
+        "d3": "~3.5.5"
+    },
+    "devDependencies": {
+
+    }
 }

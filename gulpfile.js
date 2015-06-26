@@ -66,6 +66,15 @@ gulp.task('inject', function() {
         .pipe(gulp.dest('src'));;
 });
 
+//------------------------------------- Bower Dependency Upkeep
+gulp.task('bower', function() {
+    return plug.bower({
+            cmd: 'update'
+        })
+        .pipe(gulp.dest('lib/'))
+});
+
+
 //------------------------------------- Logs
 function log(msg) {
     if (typeof(msg) === 'object') {

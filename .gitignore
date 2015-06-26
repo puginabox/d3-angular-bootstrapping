@@ -8,6 +8,7 @@ www
 node_modules
 vendor
 js/lib
+**/js/lib
 .DS_Store
 .sass-cache
 
