@@ -10,7 +10,7 @@
 
     angular
         .module('myApp')
-        .directive('myScatterChart', ["d3", "myChart",
+        .directive('myScatterChart', ["d3",
             function(d3) {
 
                 function draw(svg, width, height, data) {

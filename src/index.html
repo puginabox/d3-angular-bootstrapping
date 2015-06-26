@@ -25,8 +25,13 @@
     <div ng-controller="MainCtrl">
         <div class="container">
             <h2>D3'ing</h2>
-            <div id="deThree"></div>
+            <div ng-controller="MainCtrl">
+                <!-- chart.directive.js in scope... -->
+            </div>
+            <my-scatter-chart class="chart"></my-scatter-chart>
+            <my-scatter-chart class="chart"></my-scatter-chart>
         </div>
+        <!-- end of .container -->
     </div>
     <script src="js/app.js"></script>
     <script src="js/controllers/main.js"></script>
